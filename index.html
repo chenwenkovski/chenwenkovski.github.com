@@ -5,9 +5,109 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>狼人杀模拟器</title>
+  <style media="screen">
+    * {
+      font-size: 16px;
+      color: #333;
+    }
+    h1{
+      font-size: 36px;
+      text-align: center;
+      color: #ccc;
+    }
+    .cell{
+      margin:0 auto;
+      padding: 20px 10px 0;
+      text-align: center;
+    }
+    .total {
+      line-height: 24px;
+    }
+    .secend {
+      width: 40px;
+    }
+
+    #players {
+      max-width: 980px;
+      text-align: center;
+      margin: 100px auto;
+    }
+    .playerCell {
+      display: inline-block;
+      min-width: 100px;
+      width: 20%;
+      text-align: center;
+      padding: 10px 30px;
+      background-color: #eee;
+      margin: 10px;
+    }
+
+    button {
+      padding:10px 80px;
+    }
+    .footer {
+      font-size: 12px;
+      color: #ccc;
+    }
+  </style>
+  <script type="text/javascript">
+    function init (){
+      console.log('page ready');
+      setPlayer(12);
+
+      var selectTotal = document.getElementsByName('total')[0];
+      selectTotal.onchange = setPlayer(selectTotal.value); //bug todo
+    }
+
+    function setPlayer(total) {
+      var total;
+      if (total){
+        // set player ui
+        console.log('total = ' + total);
+        document.getElementById('players').innerHTML = '';
+
+        for (var i = 1; i <= total; i++) {
+          document.getElementById('players').innerHTML += "<div class='playerCell'>" + i + "号玩家</div>"
+        }
+
+      } else {
+        alert('Error')
+        console.log('### Error! player numbers');
+      }
+    }
+  </script>
 </head>
-<body>
-  狼人杀模拟器
+<body onload="init()">
+  <h1>狼人杀模拟器</h1>
+
+  <div class="cell">
+    <span>请输入玩家数量</span>
+    <select class="total" name="total">
+      <option value="12">12</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option>
+    </select>
+  </div>
+
+  <div class="cell">
+    <span>倒计时</span>
+    <input name="timer" type="text" class="secend" placeholder="20" value="20">
+    <span>秒</span>
+  </div>
+
+  <div id="players">
+    <!-- player ui -->
+  </div>
+
+  <div class="cell">
+    <button>天黑请闭眼</button>
+  </div>
+
+  <div class="cell footer">
+    大宝贝儿么么哒！
+  </div>
 
 </body>
 </html>
